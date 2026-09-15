@@ -233,8 +233,8 @@ function fmtQuestion(field){
 
 // Heart-Wrenching's tissue-scale answer -> acceptable book-range, per Jessie's table
 const TISSUE_RANGE = {
-  0:[0,3], 1:[0,3], 2:[0,4], 3:[1,5], 4:[2,6], 5:[3,7],
-  6:[4,8], 7:[5,9], 8:[6,10], 9:[7,10], 10:[8,10],
+  0:[0,5], 1:[0,5], 2:[0,5], 3:[0,5], 4:[3,7], 5:[3,7], 6:[3,7],
+  7:[6,10], 8:[6,10], 9:[6,10], 10:[6,10],
 };
 
 const QUESTIONS = {
@@ -362,7 +362,10 @@ const QUESTIONS = {
         { label:"The quiet kind of devastating that sneaks up on you", value:"Quietly devastating" },
         { label:"Tell me the unvarnished story of someone's life", value:"Someone's story" },
       ],
-      apply(pool, value){ return pool.filter(b => b.hw.ctype === value); }
+      apply(pool, value){
+        if(value !== "Complicated relationships") return pool;
+        return pool.filter(b => b.hw.ctype === value);
+      }
     },
     fmtQuestion("hw"),
   ],
