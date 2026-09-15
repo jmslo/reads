@@ -640,14 +640,6 @@ backBtn.addEventListener('click', ()=>{
   renderStep();
 });
 
-function scoreBook(b){
-  let s = (b.r||0) * 2;
-  if(b.fav) s += 3;
-  if(b.rev) s += 1;
-  if(b.cov) s += 0.5;
-  return s;
-}
-
 function shuffle(arr){
   const a = arr.slice();
   for(let i=a.length-1;i>0;i--){
@@ -661,13 +653,29 @@ let lastPool = [];
 let lastPoolIdx = 0;
 
 function computeMatches(){
-  if(state.mood === 'wild'){
-    return shuffle(state.pool);
-  }
-  const scored = state.pool.map(b=>({b, s:scoreBook(b)}));
-  scored.sort((a,b)=>b.s - a.s);
-  const top = scored.slice(0, Math.max(8, Math.ceil(scored.length*0.4))).map(x=>x.b);
-  return shuffle(top);
+  // Favorites always lead, then descend by star rating (5 -> 4.5 -> 4 -> ...).
+  // Books tie within the same favorite/rating tier are shuffled among themselves
+  // so repeat plays still feel varied without breaking that priority order.
+  const tiers = [];
+  let currentTier = null;
+  state.pool
+    .slice()
+    .sort((a, b) => {
+      const favDiff = (a.fav ? 0 : 1) - (b.fav ? 0 : 1);
+      if(favDiff !== 0) return favDiff;
+      return (b.r||0) - (a.r||0);
+    })
+    .forEach(b => {
+      const key = (b.fav ? 'fav' : 'nonfav') + ':' + (b.r||0);
+      if(!currentTier || currentTier.key !== key){
+        currentTier = { key, books:[] };
+        tiers.push(currentTier);
+      }
+      currentTier.books.push(b);
+    });
+  const ordered = tiers.flatMap(t => shuffle(t.books));
+  const top = ordered.slice(0, Math.max(8, Math.ceil(ordered.length*0.4)));
+  return top;
 }
 
 function starRow(r){
