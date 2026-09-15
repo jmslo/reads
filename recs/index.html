@@ -389,7 +389,52 @@ const QUESTIONS = {
       apply(pool, value){ return pool.filter(b => b.fem.real === value); }
     },
   ],
-  wild: [],
+  wild: [
+    {
+      type:"buttons",
+      text:"Pick your snack for a long flight:",
+      options:[
+        { label:"Glass of the shitty house red", value:"Wine" },
+        { label:"Bag of Haribo gummy bears", value:"Gummy bears" },
+        { label:"Something homemade and packed in advance", value:"Homemade" },
+        { label:"No snacks, white-knuckling this journey", value:"None" },
+      ],
+      apply(pool, value){ return pool; }
+    },
+    {
+      type:"buttons",
+      text:"What's your cult leader nickname?",
+      options:[
+        { label:"Mother", value:"Mother" },
+        { label:"The Prophet", value:"The Prophet" },
+        { label:"Sister Moonbeam", value:"Sister Moonbeam" },
+        { label:'Just "Steve"', value:"Steve" },
+      ],
+      apply(pool, value){ return pool; }
+    },
+    {
+      type:"buttons",
+      text:"Pick the most justifiable reason to fake your own death:",
+      options:[
+        { label:"The group chat hit 400 unread messages", value:"Group chat" },
+        { label:"You have to play one more baby shower guessing game", value:"Baby shower" },
+        { label:"You accidentally reply-all'd to the full company", value:"Reply-all" },
+        { label:"You liked a pic 84 weeks deep on your ex's new boo's Insta", value:"Insta stalking" },
+      ],
+      apply(pool, value){ return pool; }
+    },
+    {
+      type:"buttons",
+      text:"Favorite conspiracy theory:",
+      options:[
+        { label:"Bigfoot is just a very shy, very tall man", value:"Bigfoot" },
+        { label:"Avril Lavigne was replaced by a clone in the 2000s", value:"Avril clone" },
+        { label:"There is a fountain of youth and Paul Rudd found it", value:"Paul Rudd" },
+        { label:"The Mandela Effect means we're all living in merged timelines", value:"Mandela Effect" },
+      ],
+      apply(pool, value){ return pool; }
+    },
+  ],
 };
 
 /* ---------------- quiz engine ---------------- */
