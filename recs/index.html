@@ -63,8 +63,9 @@
   }
   .opt-btn-h:hover { border-color: var(--accent); background: var(--accent-soft); }
   .opt-btn-h:active { transform: scale(0.99); }
-  .opt-btn-h .opt-title { font-family: 'Spectral', serif; font-weight: 700; font-size: 15px; }
-  .opt-btn-h .opt-sub { font-size: 12.5px; color: var(--text-muted); line-height: 1.35; }
+  .opt-btn-h .opt-line { font-family: 'Source Serif 4', serif; font-size: 15.5px; line-height: 1.4; }
+  .opt-btn-h .opt-line strong { font-family: 'Spectral', serif; font-weight: 700; }
+  .opt-btn-h .opt-line-sub { color: var(--text-muted); }
   @media (max-width: 480px) {
     .options-row { grid-template-columns: 1fr; }
   }
@@ -588,8 +589,7 @@ function renderStep(){
       if(q.horizontal){
         btn.className = 'opt-btn-h';
         btn.innerHTML = `
-          <span class="opt-title">${o.label}</span>
-          ${o.sub ? `<span class="opt-sub">${o.sub}</span>` : ''}
+          <span class="opt-line"><strong>${o.label}</strong>${o.sub ? `: <span class="opt-line-sub">${o.sub}</span>` : ''}</span>
         `;
       } else if(o.sub){
         btn.className = 'opt-btn rich';
