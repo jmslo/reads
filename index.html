@@ -93,6 +93,39 @@
     margin: 0 0 18px;
   }
 
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .dewey-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 9px 16px;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .dewey-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 640px) {
+    .header-top {
+      flex-direction: column;
+    }
+  }
+
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -396,9 +429,14 @@
 
 <div class="wrap">
   <header>
-    <p class="eyebrow">A personal library, catalogued one book at a time</p>
-    <h1 class="title">The Slocum Stacks</h1>
-    <p class="subtitle">A running tally of the literary escapes, memoirs, and nonfiction that have taken over my imagination and my nightstand since 2015. 🤍 is for my favorites that I couldn't put down and that I couldn't stop talking about, maybe still today. Pick a spine and see where it takes you.</p>
+    <div class="header-top">
+      <div class="header-copy">
+        <p class="eyebrow">A personal library, catalogued one book at a time</p>
+        <h1 class="title">The Slocum Stacks</h1>
+        <p class="subtitle">A running tally of the literary escapes, memoirs, and nonfiction that have taken over my imagination and my nightstand since 2015. 🤍 is for my favorites that I couldn't put down and that I couldn't stop talking about, maybe still today. Pick a spine and see where it takes you.</p>
+      </div>
+      <a class="dewey-btn" href="/reads/recs">Want a personal rec? Ask Dewey!</a>
+    </div>
     <div class="stats" id="stats"></div>
   </header>
 
