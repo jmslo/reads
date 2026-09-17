@@ -26,6 +26,10 @@
   h1, h2, h3 { font-family: 'Spectral', Georgia, serif; text-wrap: balance; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 70px; }
 
+  .subtle-brand{display:flex; align-items:center; gap:6px; margin-bottom:32px;}
+  .subtle-brand svg{color:var(--text-faint); flex:none;}
+  .subtle-brand span{font-family:'Spectral', Georgia, serif; font-style:italic; font-size:12px; color:var(--text-faint); letter-spacing:.02em;}
+
   header { text-align: center; margin-bottom: 34px; }
   .eyebrow { font-family: 'Spectral', Georgia, serif; font-style: italic; font-size: 15px; color: var(--accent); font-weight: 500; margin: 0 0 10px; }
   h1.title { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; margin: 0 0 26px; letter-spacing: -0.01em; }
@@ -162,6 +166,16 @@
 </style>
 
 <div class="wrap">
+  <div class="subtle-brand" id="subtleBrand" hidden>
+    <svg viewBox="-1 0 22 14" width="18" height="13" fill="currentColor" aria-hidden="true">
+      <rect x="0.6" y="5" width="2.6" height="7" transform="rotate(-4 1.9 12)"/>
+      <rect x="4.9" y="1" width="2.6" height="11" transform="rotate(2 6.2 12)"/>
+      <rect x="9.2" y="6" width="2.6" height="6" transform="rotate(-3 10.5 12)"/>
+      <rect x="13.5" y="3" width="2.6" height="9" transform="rotate(5 14.8 12)"/>
+      <rect x="0" y="13" width="16.8" height="1"/>
+    </svg>
+    <span>Dewey</span>
+  </div>
   <header id="pageHeader">
     <p class="eyebrow">a companion to The Slocum Stacks</p>
     <h1 class="title">Ask Dewey for a Book Rec</h1>
@@ -502,6 +516,7 @@ const resultCard = document.getElementById('resultCard');
 const resultBody = document.getElementById('resultBody');
 const resultEyebrow = document.getElementById('resultEyebrow');
 const pageHeader = document.getElementById('pageHeader');
+const subtleBrand = document.getElementById('subtleBrand');
 const revealFlash = document.getElementById('revealFlash');
 
 function totalSteps(){
@@ -516,6 +531,7 @@ function escapeHtml(s){
 
 function renderNameStep(){
   pageHeader.hidden = false;
+  subtleBrand.hidden = true;
   progressWrap.hidden = true;
   backBtn.hidden = true;
   stepCount.textContent = '';
@@ -543,6 +559,7 @@ function renderNameStep(){
 
 function renderStep(){
   pageHeader.hidden = true;
+  subtleBrand.hidden = false;
   const stepIdx = history.length;
   progressBar.style.width = Math.round((stepIdx/totalSteps())*100) + '%';
   stepCount.textContent = '';
@@ -771,6 +788,7 @@ function renderResult(book){
   addSparkles(resultBody.querySelector('.result-cover-wrap'));
 
   pageHeader.hidden = true;
+  subtleBrand.hidden = false;
   quizCard.hidden = true;
   document.querySelector('.progress').hidden = true;
   resultCard.hidden = false;
