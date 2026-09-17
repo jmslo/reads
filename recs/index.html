@@ -64,12 +64,10 @@
   .progress{height:2px; border-radius:0; background:var(--border); overflow: hidden; margin-bottom: 26px;}
   .progress-bar{height:100%; background:var(--accent); border-radius:0; transition: width .3s ease; width: 0%;}
 
-  .quiz-card {
-    background: var(--surface); border: 1px solid rgba(73,57,44,0.06); border-radius: 16px;
-    padding: 34px 30px; box-shadow: 0 10px 30px var(--shadow);
-  }
+  .quiz-card { background:none; border:none; border-radius:0; box-shadow:none; padding:0; }
   .q-text, #qText{ font-family:'Fraunces',serif; font-size:21px; font-weight:600; line-height:1.3; margin:0 0 24px; }
   .q-label{ font-family:'Newsreader',serif; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:10px; }
+  .greeting{ display:block; font-family:'Newsreader',serif; font-size:15px; font-style:italic; color:var(--text-muted); margin-bottom:10px; }
   .options { display: flex; flex-direction: column; gap: 10px; }
   .opt-btn{
     text-align:left; background:none; border:none; border-bottom:1px solid var(--border);
@@ -85,6 +83,18 @@
   .opt-btn.rich:hover{ background:var(--surface-2); }
   .opt-btn.rich .opt-title{ font-family:'Fraunces',serif; font-weight:600; font-size:15.5px; }
   .opt-btn.rich .opt-sub{ font-size:13px; color:var(--text-muted); line-height:1.35; }
+
+  .opt-grid{
+    display:grid; grid-template-columns:1fr 1fr;
+    border-top:1px solid var(--border); border-left:1px solid var(--border);
+  }
+  .opt-grid .cell{
+    border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+    padding:26px 22px; min-height:132px; display:flex; align-items:center;
+    cursor:pointer; transition:background .15s; font-size:15.5px; line-height:1.4; font-family:'Newsreader',serif;
+  }
+  .opt-grid .cell:hover{ background:var(--surface-2); color:var(--coral-deep, #7F3A26); }
+  @media (max-width:420px){ .opt-grid{grid-template-columns:1fr;} .opt-grid .cell{min-height:auto;} }
 
   .options-row{
     display:grid; grid-template-columns:repeat(3,1fr);
@@ -149,22 +159,30 @@
   .step-count { font-size: 12.5px; color: var(--text-faint); }
 
   .result-card{ background:none; border:none; box-shadow:none; padding:0; text-align:left; }
-  .result-eyebrow { font-family:'Fraunces',serif; font-style:italic; color: var(--accent); font-size: 14px; margin-bottom: 18px; }
-  .result-cover{ width:120px; border-radius:0; box-shadow:3px 6px 14px var(--shadow); display:block; float:left; margin:0 22px 10px 0; position:relative; }
-  .cover{
-    width:120px; height:180px; color:var(--bg); display:flex; flex-direction:column; justify-content:space-between;
-    padding:16px 14px; float:left; margin:0 22px 10px 0; font-family:'Fraunces',serif; position:relative;
+  .result-eyebrow{
+    display:flex; align-items:center; gap:8px; font-family:'Newsreader',serif; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color: var(--accent); font-size: 13px; margin-bottom: 28px;
   }
-  .cover .ct{ font-size:15px; font-style:italic; line-height:1.2; }
-  .cover .ca{ font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.75; margin-top:8px; }
-  .result-title { font-family:'Fraunces',serif; font-size: 30px; font-style:italic; font-weight: 500; margin: 0 0 6px; line-height: 1.25; }
-  .result-author { font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-bottom: 10px; }
-  .result-typeyear { color: var(--text-faint); font-size: 13px; margin-bottom: 10px; }
-  .result-link { color: var(--coral-deep, #7F3A26); font-size: 13px; text-decoration: none; border-bottom:1px solid var(--surface-2); }
+  .result-eyebrow .spark{ font-size:15px; }
+  .cover-frame{ position:relative; float:left; margin:0 26px 16px 0; }
+  .result-cover{ width:220px; border-radius:0; box-shadow:3px 6px 14px var(--shadow); display:block; }
+  .cover{
+    width:220px; height:320px; color:var(--bg); display:flex; flex-direction:column; justify-content:space-between;
+    padding:20px 18px; font-family:'Fraunces',serif; box-shadow:3px 6px 14px var(--shadow);
+  }
+  .cover .ct{ font-size:20px; font-style:italic; line-height:1.2; }
+  .cover .ca{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.75; margin-top:8px; }
+  .cover-badge{ position:absolute; top:12px; left:12px; width:14px; height:14px; background:var(--accent); }
+  .cover-spark{ position:absolute; top:-10px; right:-10px; color:var(--accent); font-size:22px; line-height:1; }
+  .result-title { font-family:'Fraunces',serif; font-size: 40px; font-style:italic; font-weight: 500; margin: 0 0 10px; line-height: 1.2; }
+  .result-author { font-size:13px; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-bottom: 16px; }
+  .result-typeyear{ color: var(--text-faint); font-size: 13.5px; margin-bottom: 10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .result-link { color: var(--coral-deep, #7F3A26); font-size: 13.5px; text-decoration: none; border-bottom:1px solid var(--surface-2); }
   .result-link:hover { text-decoration: underline; }
-  @media (max-width: 420px) {
-    .result-cover, .cover { width: 96px; }
-    .cover { height: 144px; }
+  @media (max-width: 480px) {
+    .result-cover, .cover { width: 140px; }
+    .cover { height: 204px; }
+    .cover .ct{ font-size:15px; }
   }
   .result-why { display:none; }
   .result-review-label{ clear:both; font-family:'Newsreader',serif; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin:24px 0 8px; }
@@ -635,10 +653,11 @@ function renderStep(){
   optionsArea.className = 'options';
 
   if(stepIdx === 0){
-    qLabel.textContent = '';
-    qText.textContent = userName
+    qLabel.className = 'greeting';
+    qLabel.textContent = userName
       ? `Hi ${userName}, sweet friend.`
       : "Hi, sweet friend.";
+    qText.textContent = "First, let's start with a feeling. What are you craving right now in your read?";
     const list = document.createElement('ul');
     list.className = 'mood-list';
     MOODS.forEach(m=>{
@@ -662,18 +681,24 @@ function renderStep(){
 
   const qIdx = stepIdx - 1;
   const q = QUESTIONS[state.mood][qIdx];
+  qLabel.className = 'q-label';
   qLabel.textContent = MOODS.find(m=>m.key===state.mood).label;
   qText.textContent = q.text;
 
   if(q.type === 'buttons'){
+    const useGrid = !q.horizontal && !q.options[0].sub && q.options.length === 4;
     if(q.horizontal) optionsArea.className = 'options-row';
+    else if(useGrid) optionsArea.className = 'opt-grid';
     q.options.forEach(o=>{
-      const btn = document.createElement('button');
+      const btn = document.createElement(useGrid ? 'div' : 'button');
       if(q.horizontal){
         btn.className = 'opt-btn-h';
         btn.innerHTML = `
           <span class="opt-line"><strong>${o.label}</strong>${o.sub ? `: <span class="opt-line-sub">${o.sub}</span>` : ''}</span>
         `;
+      } else if(useGrid){
+        btn.className = 'cell';
+        btn.textContent = o.label;
       } else if(o.sub){
         btn.className = 'opt-btn rich';
         btn.innerHTML = `
@@ -827,7 +852,7 @@ function renderResult(book){
         <div class="ct">${book.t}</div>
         <div class="ca">${book.a}</div>
       </div>`;
-  resultEyebrow.textContent = "Your match is...";
+  resultEyebrow.innerHTML = '<span class="spark">&#10022;</span> Your match';
   const safeName = escapeHtml(userName);
   const whyLine = userName
     ? `Somewhere on my shelf, this book was already waiting for you, ${safeName}.`
@@ -838,16 +863,19 @@ function renderResult(book){
   const review = cleanReview(book.rev) || "I haven't written this one up yet, but it earned a spot on my shelf, which is recommendation enough.";
 
   resultBody.innerHTML = `
-    ${coverHtml}
+    <div class="cover-frame">
+      ${coverHtml}
+      <span class="cover-badge"></span>
+      <span class="cover-spark">&#10022;</span>
+    </div>
     <div class="result-title">${book.t}</div>
     <div class="result-author">${book.a}</div>
-    ${typeYear ? `<div class="result-typeyear">${typeYear}</div>` : ''}
-    <a class="result-link" href="${grUrl}" target="_blank" rel="noopener">Find it on Goodreads &rarr;</a>
+    <div class="result-typeyear">${typeYear}${typeYear ? ' &middot; ' : ''}<a class="result-link" href="${grUrl}" target="_blank" rel="noopener">Goodreads &rarr;</a></div>
     <p class="result-why">${whyLine}</p>
     <div class="result-review-label">Why I think you'll love it</div>
     <div class="result-review">${review}</div>
   `;
-  addSparkles(resultBody.querySelector('.result-cover, .cover'));
+  addSparkles(resultBody.querySelector('.cover-frame'));
 
   pageHeader.hidden = true;
   subtleBrand.hidden = false;
