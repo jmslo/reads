@@ -64,25 +64,19 @@
   .progress{height:2px; border-radius:0; background:var(--border); overflow: hidden; margin-bottom: 26px;}
   .progress-bar{height:100%; background:var(--accent); border-radius:0; transition: width .3s ease; width: 0%;}
 
-  .quiz-card { background:none; border:none; border-radius:0; box-shadow:none; padding:0; }
+  .quiz-card { background:none; border:none; border-radius:0; box-shadow:none; padding:0; max-width:600px; }
   .q-text, #qText{ font-family:'Fraunces',serif; font-size:21px; font-weight:600; line-height:1.3; margin:0 0 24px; }
   .q-label{ font-family:'Newsreader',serif; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:10px; }
   .greeting{ display:block; font-family:'Newsreader',serif; font-size:15px; font-style:italic; color:var(--text-muted); margin-bottom:10px; }
-  .options { display: flex; flex-direction: column; gap: 10px; }
+  .options { display: flex; flex-direction: column; }
   .opt-btn{
     text-align:left; background:none; border:none; border-bottom:1px solid var(--border);
     color:var(--text); border-radius:0; padding:16px 4px; font-family:'Newsreader',serif; font-size:15.5px;
     cursor:pointer; transition:background .15s, color .15s;
   }
   .opt-btn:hover{ background:var(--surface-2); color:var(--coral-deep, #7F3A26); }
-  .opt-btn.rich{
-    display:flex; flex-direction:column; align-items:flex-start; gap:4px;
-    background:none; border:none; border-bottom:1px solid var(--border); border-radius:0;
-    padding:16px 4px; cursor:pointer; transition:background .15s;
-  }
-  .opt-btn.rich:hover{ background:var(--surface-2); }
-  .opt-btn.rich .opt-title{ font-family:'Fraunces',serif; font-weight:600; font-size:15.5px; }
-  .opt-btn.rich .opt-sub{ font-size:13px; color:var(--text-muted); line-height:1.35; }
+  .opt-line{ line-height:1.4; }
+  .opt-line-sub{ color:var(--text-muted); }
 
   .opt-grid{
     display:grid; grid-template-columns:1fr 1fr;
@@ -96,23 +90,16 @@
   .opt-grid .cell:hover{ background:var(--surface-2); color:var(--coral-deep, #7F3A26); }
   @media (max-width:420px){ .opt-grid{grid-template-columns:1fr;} .opt-grid .cell{min-height:auto;} }
 
-  .options-row{
-    display:grid; grid-template-columns:repeat(3,1fr);
+  .opt-row{
+    display:flex;
     border-top:1px solid var(--border); border-left:1px solid var(--border);
   }
-  .opt-btn-h{
-    text-align:left; background:none; border:none;
-    border-right:1px solid var(--border); border-bottom:1px solid var(--border);
-    border-radius:0; padding:20px 16px; font-family:'Newsreader',serif;
-    cursor:pointer; transition:background .15s;
-    display:flex; flex-direction:column; justify-content:center;
+  .opt-row .opt-btn{
+    flex:1; border-right:1px solid var(--border); padding:20px 16px;
   }
-  .opt-btn-h:hover{ background:var(--surface-2); }
-  .opt-btn-h .opt-line { font-family: 'Newsreader', serif; font-size: 15.5px; line-height: 1.4; }
-  .opt-btn-h .opt-line strong { font-family: 'Fraunces', serif; font-weight: 600; }
-  .opt-btn-h .opt-line-sub { color: var(--text-muted); }
-  @media (max-width: 480px) {
-    .options-row { grid-template-columns: 1fr; }
+  @media (max-width: 640px) {
+    .opt-row { flex-direction: column; }
+    .opt-row .opt-btn { border-right: none; }
   }
 
   .mood-list{list-style:none; margin:0; padding:0;}
@@ -126,7 +113,7 @@
   .mood-list .name{font-size:19px; font-family:'Fraunces',serif; font-weight:500;}
   .mood-list .desc{
     font-size:13px; font-style:italic; color:var(--text-muted); line-height:1.4;
-    text-align:right; max-width:36ch; display:flex; align-items:center; gap:8px; justify-content:flex-end;
+    text-align:right; flex:0 1 auto; min-width:0; display:flex; align-items:center; gap:8px; justify-content:flex-end;
   }
   .mood-list .arrow{color:var(--text-faint); opacity:.45; transition:opacity .15s, color .15s;}
   .mood-list li:hover .arrow{opacity:1; color:var(--accent);}
@@ -142,15 +129,17 @@
   .slider-value{ text-align:center; font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:1.8rem; margin-bottom:14px; color:var(--accent); }
   .slider-go { display:flex; justify-content:center; }
 
-  .name-wrap { padding: 4px; }
+  .name-step{ margin-top: 28px; }
+  .name-label{ font-family:'Newsreader',serif; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin-bottom: 12px; }
+  .name-wrap { padding: 0; }
   .name-input{
     width:100%; max-width:280px; border:none; border-bottom:1px solid var(--text-faint); background:transparent;
     font-family:'Newsreader',serif; font-style:italic; font-size:18px; color:var(--text);
-    padding:6px 2px 10px; border-radius:0; margin-bottom: 16px;
+    padding:6px 2px 10px; border-radius:0; margin-bottom: 16px; display:block;
   }
   .name-input:focus { outline: none; border-color: var(--accent); }
   .name-input::placeholder{color:var(--text-faint); opacity:.7;}
-  .name-go { display:flex; justify-content:center; }
+  .name-go { display:flex; justify-content:flex-start; }
 
   .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
   .back-btn { background: none; border: none; color: var(--text-muted); font-size: 13.5px; cursor: pointer; font-family: 'Newsreader', serif; padding: 4px; }
@@ -158,42 +147,41 @@
   .back-btn[hidden] { visibility: hidden; }
   .step-count { font-size: 12.5px; color: var(--text-faint); }
 
-  .result-card{ background:none; border:none; box-shadow:none; padding:0; text-align:left; }
+  .result-card{ background:none; border:none; box-shadow:none; padding:0; text-align:left; max-width:600px; }
   .result-eyebrow{
     display:flex; align-items:center; gap:8px; font-family:'Newsreader',serif; font-weight:600;
     letter-spacing:.14em; text-transform:uppercase; color: var(--accent); font-size: 13px; margin-bottom: 28px;
   }
   .result-eyebrow .spark{ font-size:15px; }
-  .cover-frame{ position:relative; float:left; margin:0 26px 16px 0; }
-  .result-cover{ width:220px; border-radius:0; box-shadow:3px 6px 14px var(--shadow); display:block; }
+  .cover-frame{ position:relative; float:left; margin:0 22px 14px 0; }
+  .result-cover{ width:150px; border-radius:0; box-shadow:3px 6px 14px var(--shadow); display:block; }
   .cover{
-    width:220px; height:320px; color:var(--bg); display:flex; flex-direction:column; justify-content:space-between;
-    padding:30px 18px 20px; font-family:'Fraunces',serif; box-shadow:3px 6px 14px var(--shadow);
+    width:150px; height:220px; color:var(--bg); display:flex; flex-direction:column; justify-content:space-between;
+    padding:22px 16px 16px; font-family:'Fraunces',serif; box-shadow:3px 6px 14px var(--shadow);
   }
-  .cover .ct{ font-size:20px; font-style:italic; line-height:1.2; }
-  .cover .ca{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.75; margin-top:8px; }
-  .cover-badge{ position:absolute; top:12px; left:12px; width:14px; height:14px; background:var(--accent); }
+  .cover .ct{ font-size:16px; font-style:italic; line-height:1.2; }
+  .cover .ca{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; opacity:.75; margin-top:8px; }
   .cover-spark{ position:absolute; top:-10px; right:-10px; color:var(--accent); font-size:22px; line-height:1; }
-  .result-title { font-family:'Fraunces',serif; font-size: 40px; font-style:italic; font-weight: 500; margin: 0 0 10px; line-height: 1.2; }
-  .result-author { font-size:13px; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-bottom: 16px; }
-  .result-typeyear{ color: var(--text-faint); font-size: 13.5px; margin-bottom: 10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .result-link { color: var(--coral-deep, #7F3A26); font-size: 13.5px; text-decoration: none; border-bottom:1px solid var(--surface-2); }
+  .result-title { font-family:'Fraunces',serif; font-size: 26px; font-style:italic; font-weight: 500; margin: 0 0 8px; line-height: 1.22; }
+  .result-author { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .result-typeyear{ color: var(--text-faint); font-size: 13px; margin-bottom: 8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .result-link { color: var(--coral-deep, #7F3A26); font-size: 13px; text-decoration: none; border-bottom:1px solid var(--surface-2); }
   .result-link:hover { text-decoration: underline; }
   @media (max-width: 480px) {
     .cover-frame{ margin:0 16px 14px 0; }
-    .result-cover, .cover { width: 110px; }
-    .cover { height: 160px; padding:26px 12px 14px; }
-    .cover .ct{ font-size:13px; }
-    .cover .ca{ font-size:9px; }
-    .result-title{ font-size:22px; margin-bottom:6px; }
-    .result-author{ font-size:11px; margin-bottom:8px; }
-    .result-typeyear{ font-size:12px; margin-bottom:6px; }
+    .result-cover, .cover { width: 92px; }
+    .cover { height: 134px; padding:20px 10px 12px; }
+    .cover .ct{ font-size:12px; }
+    .cover .ca{ font-size:8px; }
+    .result-title{ font-size:20px; margin-bottom:6px; }
+    .result-author{ font-size:10.5px; margin-bottom:8px; }
+    .result-typeyear{ font-size:11.5px; margin-bottom:6px; }
   }
   .result-why { display:none; }
-  .result-review-label{ clear:both; font-family:'Newsreader',serif; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin:24px 0 8px; }
+  .result-review-label{ clear:both; font-family:'Newsreader',serif; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin:28px 0 10px; }
   .result-review{
-    clear:both; text-align:left; font-size:14.5px; line-height:1.42; color:var(--text); background:none;
-    border-radius:0; border-left:2px solid var(--surface-2); padding:0 0 0 18px; margin:0; font-style:italic;
+    clear:both; text-align:left; font-size:16px; line-height:1.58; color:var(--text); background:none;
+    border-radius:0; border-left:3px solid var(--accent-soft); padding:0 0 0 20px; margin:0; font-style:italic;
     max-height:none; overflow:visible;
   }
   .result-actions{ display:flex; gap:22px; align-items:center; margin-top:28px; padding-top:20px; border-top:1px solid var(--border); clear:both; }
@@ -253,6 +241,7 @@
           <span class="line2">for a book rec</span>
         </h1>
         <p class="lede">Sharing books is my love language. A few questions, and I'll pull one of my faves off the shelf just for you.</p>
+        <div class="name-step" id="nameStep"></div>
       </div>
       <div>
         <div class="book-stack">
@@ -356,7 +345,6 @@ const QUESTIONS = {
     },
     {
       type:"buttons",
-      horizontal:true,
       text:"How old do you want to feel by the last page?",
       options:[
         { label:"Like a kid again", sub:"whimsical, fantastical, pure escape hatch", value:"Kid" },
@@ -602,6 +590,7 @@ const stepCount = document.getElementById('stepCount');
 const progressBar = document.getElementById('progressBar');
 const progressWrap = document.querySelector('.progress');
 const quizCard = document.getElementById('quizCard');
+const nameStep = document.getElementById('nameStep');
 const resultCard = document.getElementById('resultCard');
 const resultBody = document.getElementById('resultBody');
 const resultEyebrow = document.getElementById('resultEyebrow');
@@ -623,23 +612,22 @@ function renderNameStep(){
   pageHeader.hidden = false;
   subtleBrand.hidden = true;
   progressWrap.hidden = true;
+  quizCard.hidden = true;
   backBtn.hidden = true;
   stepCount.textContent = '';
-  qLabel.textContent = "Before we start";
-  qText.textContent = "Who am I recommending to?";
-  optionsArea.innerHTML = '';
-  const wrap = document.createElement('div');
-  wrap.className = 'name-wrap';
-  wrap.innerHTML = `
-    <input type="text" class="name-input" id="nameInput" placeholder="Your first name" maxlength="30" autofocus>
-    <div class="name-go"><button class="btn-primary" id="nameGo">Here we go</button></div>
+  nameStep.innerHTML = `
+    <div class="name-label">Who am I recommending to?</div>
+    <div class="name-wrap">
+      <input type="text" class="name-input" id="nameInput" placeholder="Your first name" maxlength="30" autofocus>
+      <div class="name-go"><button class="btn-primary" id="nameGo">Here we go &rarr;</button></div>
+    </div>
   `;
-  optionsArea.appendChild(wrap);
   const input = document.getElementById('nameInput');
   const submit = ()=>{
     const raw = input.value.trim();
     if(raw) userName = raw.charAt(0).toUpperCase() + raw.slice(1);
     progressWrap.hidden = false;
+    quizCard.hidden = false;
     renderStep();
   };
   document.getElementById('nameGo').addEventListener('click', submit);
@@ -691,31 +679,16 @@ function renderStep(){
   qText.textContent = q.text;
 
   if(q.type === 'buttons'){
-    const useGrid = !q.horizontal && !q.options[0].sub && q.options.length === 4;
-    if(q.horizontal) optionsArea.className = 'options-row';
-    else if(useGrid) optionsArea.className = 'opt-grid';
+    const n = q.options.length;
+    const useGrid = n === 4;
+    const useRow = n <= 3;
+    optionsArea.className = useGrid ? 'opt-grid' : (useRow ? 'opt-row' : 'options');
     q.options.forEach(o=>{
-      const btn = document.createElement(useGrid ? 'div' : 'button');
-      if(q.horizontal){
-        btn.className = 'opt-btn-h';
-        btn.innerHTML = `
-          <span class="opt-line"><strong>${o.label}</strong>${o.sub ? `: <span class="opt-line-sub">${o.sub}</span>` : ''}</span>
-        `;
-      } else if(useGrid){
-        btn.className = 'cell';
-        btn.textContent = o.label;
-      } else if(o.sub){
-        btn.className = 'opt-btn rich';
-        btn.innerHTML = `
-          <span class="opt-title">${o.label}</span>
-          <span class="opt-sub">${o.sub}</span>
-        `;
-      } else {
-        btn.className = 'opt-btn';
-        btn.textContent = o.label;
-      }
-      btn.onclick = ()=> answerQuestion(q, o.value);
-      optionsArea.appendChild(btn);
+      const el = document.createElement(useGrid ? 'div' : 'button');
+      el.className = useGrid ? 'cell' : 'opt-btn';
+      el.innerHTML = `<span class="opt-line">${o.label}${o.sub ? `: <span class="opt-line-sub">${o.sub}</span>` : ''}</span>`;
+      el.onclick = ()=> answerQuestion(q, o.value);
+      optionsArea.appendChild(el);
     });
   } else if(q.type === 'slider'){
     const wrap = document.createElement('div');
@@ -870,7 +843,6 @@ function renderResult(book){
   resultBody.innerHTML = `
     <div class="cover-frame">
       ${coverHtml}
-      <span class="cover-badge"></span>
       <span class="cover-spark">&#10022;</span>
     </div>
     <div class="result-title">${book.t}</div>
