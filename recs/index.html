@@ -236,13 +236,21 @@
     .progress{ margin-bottom:12px; }
     footer{ margin-top:12px; font-size:11.5px; }
 
-    .site-id{ margin-bottom:14px; }
+    .site-id{ margin-bottom:6px; }
+    .wordmark{ font-size:17px; }
+    .site-id .companion{ font-size:12.5px; }
     .landing-grid{ gap:14px; }
-    .big-headline{ font-size:34px; margin-bottom:12px; }
-    header p.lede{ font-size:14px; line-height:1.5; }
-    .book-stack{ zoom:.6; }
+    .stack-col{ order:-1; }
+    .big-headline{ font-size:42px; margin-bottom:14px; }
+    header p.lede{ font-size:15.5px; line-height:1.55; max-width:none; }
+    .book-stack{ zoom:.85; max-width:210px; margin:0 auto; }
     .name-step{ margin-top:16px; }
-    .name-input{ margin-bottom:12px; }
+    .name-input{ max-width:none; font-size:20px; margin-bottom:14px; }
+    .name-label{ font-size:12px; }
+    .name-go .btn-primary{ width:100%; justify-content:center; padding:14px 20px; font-size:16px; border-radius:4px; }
+    .wrap.landing{ min-height:100dvh; display:flex; flex-direction:column; }
+    .wrap.landing footer{ margin-top:auto; padding-top:18px; text-align:center; font-size:13.5px; }
+
 
     .q-text, #qText{ font-size:18px; margin-bottom:12px; }
     .greeting{ font-size:14px; margin-bottom:2px; }
@@ -272,6 +280,11 @@
     .action-primary{ flex:1; padding:12px 14px; font-size:14px; }
     .action-secondary{ padding:12px 6px; font-size:13px; }
   }
+  @media (max-width:640px) and (max-height:720px){
+    .book-stack{ zoom:.6; }
+    .big-headline{ font-size:36px; margin-bottom:10px; }
+    header p.lede{ font-size:14px; }
+  }
 </style>
 
 <div class="wrap">
@@ -300,7 +313,7 @@
         <p class="lede">Sharing books is my love language. A few questions, and I'll pull one of my faves off the shelf just for you.</p>
         <div class="name-step" id="nameStep"></div>
       </div>
-      <div>
+      <div class="stack-col">
         <div class="book-stack">
           <div class="b b1"></div><div class="b b2"></div><div class="b b3"></div><div class="b b4"></div>
         </div>
@@ -667,6 +680,7 @@ function escapeHtml(s){
 }
 
 function renderNameStep(){
+  document.querySelector('.wrap').classList.add('landing');
   pageHeader.hidden = false;
   subtleBrand.hidden = true;
   progressWrap.hidden = true;
@@ -694,6 +708,7 @@ function renderNameStep(){
 }
 
 function renderStep(){
+  document.querySelector('.wrap').classList.remove('landing');
   quizCard.classList.remove('step-in'); void quizCard.offsetWidth; quizCard.classList.add('step-in');
   pageHeader.hidden = true;
   subtleBrand.hidden = false;
@@ -886,6 +901,7 @@ function addSparkles(container){
 }
 
 function renderResult(book){
+  document.querySelector('.wrap').classList.remove('landing');
   const placeholderColor = book.col || MOOD_META[state.mood].color;
   const coverHtml = book.cov
     ? `<img class="result-cover" src="${book.cov}" alt="Cover of ${attr(book.t)}" decoding="async">`
