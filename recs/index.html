@@ -228,6 +228,50 @@
 
   footer{ margin-top:48px; text-align:left; color:var(--text-faint); font-size:12.5px; }
   footer a{ color:var(--text-muted); }
+
+  /* ---- compact phone layout: every screen should fit without scrolling ---- */
+  @media (max-width:640px){
+    .wrap{ padding:12px 20px 14px; }
+    .subtle-brand{ margin-bottom:10px; }
+    .progress{ margin-bottom:12px; }
+    footer{ margin-top:12px; font-size:11.5px; }
+
+    .site-id{ margin-bottom:14px; }
+    .landing-grid{ gap:14px; }
+    .big-headline{ font-size:34px; margin-bottom:12px; }
+    header p.lede{ font-size:14px; line-height:1.5; }
+    .book-stack{ zoom:.6; }
+    .name-step{ margin-top:16px; }
+    .name-input{ margin-bottom:12px; }
+
+    .q-text, #qText{ font-size:18px; margin-bottom:12px; }
+    .greeting{ font-size:14px; margin-bottom:2px; }
+    .q-label{ margin-bottom:6px; }
+    .mood-list button{ min-height:54px; padding:9px 0; }
+    .mood-list li:first-child button{ padding-top:0; min-height:48px; }
+    .mood-list .name{ font-size:17px; }
+    .opt-btn{ padding:13px 4px; }
+    .opt-row .opt-btn{ padding:13px 12px; }
+    .opt-grid .cell{ padding:14px 14px; }
+    .nav-row{ margin-top:6px; }
+    .back-btn{ padding:10px 10px; min-height:40px; }
+
+    .result-eyebrow{ margin-bottom:12px; font-size:12px; }
+    .cover-frame{ margin:0 14px 6px 0; }
+    .result-cover, .cover{ width:88px; }
+    .cover{ height:130px; padding:20px 9px 10px; }
+    .cover .ct{ font-size:11px; }
+    .cover .ca{ font-size:7.5px; }
+    .cover-spark{ font-size:16px; top:-7px; right:-7px; }
+    .result-title{ font-size:19px; margin-bottom:4px; }
+    .result-author{ font-size:10px; margin-bottom:6px; }
+    .result-typeyear{ font-size:11.5px; margin-bottom:0; }
+    .result-review-label{ margin:12px 0 6px; font-size:10.5px; }
+    .result-review{ font-size:14px; line-height:1.45; padding-left:14px; border-left-width:2px; }
+    .result-actions{ flex-direction:row; align-items:center; gap:10px; margin-top:14px; padding-top:12px; }
+    .action-primary{ flex:1; padding:12px 14px; font-size:14px; }
+    .action-secondary{ padding:12px 6px; font-size:13px; }
+  }
 </style>
 
 <div class="wrap">
@@ -285,7 +329,7 @@
     </div>
   </div>
 
-  <footer>Pulled live from my personal shelf of favorites. <a href="/reads">Browse the whole library &rarr;</a></footer>
+  <footer>Pulled from my personal library. <a href="/reads">Browse the full Slocum Stacks &rarr;</a></footer>
 </div>
 <div class="reveal-flash" id="revealFlash" hidden></div>
 
@@ -882,7 +926,24 @@ function renderResult(book){
   resultCard.classList.remove('reveal');
   void resultCard.offsetWidth; // restart animation each time
   resultCard.classList.add('reveal');
+  fitResult();
 }
+
+function fitResult(){
+  const rv = document.querySelector('.result-review');
+  if(!rv || resultCard.hidden) return;
+  rv.style.fontSize = '';
+  if(window.innerWidth > 640) return;
+  const wrapEl = document.querySelector('.wrap');
+  let size = 14.5;
+  rv.style.fontSize = size + 'px';
+  while(wrapEl.offsetHeight > window.innerHeight && size > 11.5){
+    size -= 0.5;
+    rv.style.fontSize = size + 'px';
+  }
+}
+window.addEventListener('resize', fitResult);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitResult);
 
 function showResult(){
   lastPool = computeMatches();
