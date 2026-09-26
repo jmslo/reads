@@ -52,7 +52,7 @@
   .big-headline .line2{display:block; font-weight:500; color:var(--text); font-size:.7em; margin-top:6px;}
   header p.lede{font-size:15px; line-height:1.62; color:var(--text-muted); max-width:40ch;}
 
-  .book-stack{position:relative; width:100%; max-width:210px; height:206px; margin:0 0 0 auto;}
+  .book-stack{position:relative; width:183px; max-width:183px; height:206px; margin:0 0 0 auto;}
   .book-stack::after{content:'';position:absolute;left:-4px;right:-4px;bottom:-1px;height:1px;background:var(--border);}
   .book-stack .b{position:absolute; bottom:1px; border-radius:1px; box-shadow:3px 6px 14px var(--shadow);}
   .book-stack .b::after{content:'';position:absolute;top:16px;left:8px;right:8px;height:1px;background:rgba(0,0,0,.15);}
@@ -63,7 +63,7 @@
 
   @media (max-width:820px){
     .landing-grid{grid-template-columns:1fr; gap:36px;}
-    .book-stack{margin:0 auto; max-width:170px;}
+    .book-stack{margin:0 auto;}
   }
 
   .progress{height:2px; border-radius:0; background:var(--border); overflow: hidden; margin-bottom: 26px;}
@@ -244,7 +244,7 @@
     .stack-col{ order:-1; }
     .big-headline{ font-size:47px; margin-bottom:16px; }
     header p.lede{ font-size:16px; line-height:1.6; max-width:none; }
-    .book-stack{ zoom:1.3; max-width:210px; margin:0 auto; }
+    .book-stack{ zoom:1.3; margin:0 auto; }
     .name-step{ margin-top:16px; }
     .name-input{ max-width:none; font-size:20px; margin-bottom:28px; }
     .name-label{ font-size:12px; }
@@ -309,10 +309,10 @@
     .wrap.landing .name-go{ flex:none; }
     .wrap.landing .name-go .btn-primary{ white-space:nowrap; height:56px; padding:0 28px; font-size:20px; border-radius:3px; }
     .wrap.landing .stack-col{
-      height:clamp(360px, 62vh, 560px); background:var(--bg-2); border-radius:6px;
+      height:clamp(360px, 62vh, 560px);
       display:flex; align-items:center; justify-content:center; padding-top:24px;
     }
-    .wrap.landing .book-stack{ zoom:1.8; margin:0; max-width:none; width:210px; flex:none; }
+    .wrap.landing .book-stack{ zoom:1.8; margin:0; flex:none; }
     .wrap.landing .book-stack::after{ left:-26px; right:-26px; bottom:-6px; height:6px; background:#DCCDB6; }
     .wrap.landing footer{
       margin-top:0; padding-top:24px; border-top:1px solid var(--border);
