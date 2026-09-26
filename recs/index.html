@@ -232,7 +232,7 @@
 
   /* ---- compact phone layout: every screen should fit without scrolling ---- */
   @media (max-width:640px){
-    .wrap{ padding:12px 20px 14px; }
+    .wrap{ padding:12px 30px 14px; }
     .subtle-brand{ margin-bottom:10px; }
     .progress{ margin-bottom:12px; }
     footer{ margin-top:auto; padding-top:12px; text-align:center; font-size:11.5px; }
@@ -288,10 +288,11 @@
     header p.lede{ font-size:14px; }
   }
 
+  @media (min-width:641px) and (max-width:899px){ .wrap{ padding-left:44px; padding-right:44px; } }
   /* ---- wide-screen homepage ---- */
   .foot-site{ display:none; }
   @media (min-width:900px){
-    .wrap.landing{ max-width:1208px; padding:52px 24px 34px; }
+    .wrap.landing{ max-width:1240px; padding:52px 40px 34px; }
     .wrap.landing header{ flex:1; display:flex; flex-direction:column; margin-bottom:0; }
     .wrap.landing .site-id{ margin-bottom:0; }
     .wrap.landing .wordmark{ font-size:24px; }
