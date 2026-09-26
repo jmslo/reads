@@ -249,6 +249,8 @@
     .name-input{ max-width:none; font-size:20px; margin-bottom:28px; }
     .name-label{ font-size:12px; }
     .name-go .btn-primary{ width:100%; justify-content:center; padding:14px 20px; font-size:16px; border-radius:4px; }
+    .wrap.landing header{ flex:1; display:flex; flex-direction:column; }
+    .wrap.landing .landing-grid{ flex:1; align-content:center; }
     .wrap.landing footer{ padding-top:18px; font-size:13.5px; }
     .wrap.landing footer a{ display:block; margin-top:2px; }
 
@@ -292,7 +294,7 @@
   /* ---- wide-screen homepage ---- */
   .foot-site{ display:none; }
   @media (min-width:900px){
-    .wrap.landing{ max-width:1240px; padding:52px 40px 34px; }
+    .wrap.landing{ max-width:1240px; padding:52px 64px 34px; }
     .wrap.landing header{ flex:1; display:flex; flex-direction:column; margin-bottom:0; }
     .wrap.landing .site-id{ margin-bottom:0; }
     .wrap.landing .wordmark{ font-size:24px; }
@@ -320,6 +322,10 @@
       display:flex; justify-content:space-between; align-items:center; font-size:15.5px;
     }
     .wrap.landing .foot-site{ display:inline; font-style:italic; color:var(--text-muted); }
+  }
+  @media (min-width:1200px){
+    .wrap.landing{ width:min(1160px, calc(100% - 2 * clamp(40px, 14vw, 400px))); max-width:none; padding-left:0; padding-right:0; }
+    .wrap.landing .landing-grid{ grid-template-columns:minmax(0,1fr) clamp(300px,42%,532px); }
   }
   @media (min-width:900px) and (max-height:820px){
     .wrap.landing .book-stack{ zoom:1.4; }
